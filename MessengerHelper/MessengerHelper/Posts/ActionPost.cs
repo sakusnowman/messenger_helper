@@ -9,5 +9,13 @@ namespace MessengerHelper.Posts
         public void AddAction(Action<TMessage> action)
         {
         }
+
+        public void ReciveMessage(TMessage message)
+        {
+        }
+
+        public void ReciveMessage(object message)
+        {
+        }
     }
 }
