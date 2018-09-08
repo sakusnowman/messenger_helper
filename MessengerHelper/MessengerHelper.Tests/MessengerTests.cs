@@ -64,6 +64,31 @@ namespace Tests
         }
 
         [Test]
+        public void PostMessage_RegisterdSimpleMessagePost_AllPostsAreRecivedMessage()
+        {
+            // Arrange
+            var result = "";
+            Action<SimpleMessage> action = new Action<SimpleMessage>(m => result = m.From);
+
+            Mock<IPost<SimpleMessage>> mockPost = new Mock<IPost<SimpleMessage>>();
+            postService.Setup(ps => ps.CreatePost<SimpleMessage>()).Returns(mockPost.Object);
+
+            var post = messenger.Register(action);
+
+            Mock<IPost<SimpleMessage>> mockPost2 = new Mock<IPost<SimpleMessage>>();
+            postService.Setup(ps => ps.CreatePost<SimpleMessage>()).Returns(mockPost2.Object);
+
+            var post2 = messenger.Register(action);
+
+            var message = new SimpleMessage() { From = "John" };
+            // Act
+            messenger.PostMessage(message);
+            // Assert
+            mockPost.Verify(mp => mp.ReciveMessage((object)message));
+            mockPost2.Verify(mp => mp.ReciveMessage((object)message));
+        }
+
+        [Test]
         public void PostMessage_NotRegisteredPost_ThrowsException()
         {
             Assert.Throws<NotRegisterdMessageException>(() => messenger.PostMessage(new SimpleMessage()));
