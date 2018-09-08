@@ -5,7 +5,7 @@ using Moq;
 using NUnit.Framework;
 using System;
 
-namespace Tests
+namespace MessengerHelper.Tests
 {
     [TestFixture]
     public class MessengerTests
@@ -94,14 +94,16 @@ namespace Tests
             Assert.Throws<NotRegisterdMessageException>(() => messenger.PostMessage(new SimpleMessage()));
         }
 
-        public class SimpleMessage
-        {
-            public string From { get; set; }
-        }
+        
+    }
 
-        public class NumberMessage
-        {
-            public int Num { get; set; }
-        }
+    public class SimpleMessage
+    {
+        public string From { get; set; }
+    }
+
+    public class NumberMessage
+    {
+        public int Num { get; set; }
     }
 }
