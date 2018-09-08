@@ -12,7 +12,7 @@ namespace MessengerHelper.Posts
         {
             actions = new List<Action<TMessage>>();
         }
-        
+
         public void AddAction(Action<TMessage> action)
         {
             actions.Add(action);
@@ -25,7 +25,15 @@ namespace MessengerHelper.Posts
 
         public void ReciveMessage(object message)
         {
-            ReciveMessage((TMessage)message);
+            try
+            {
+                ReciveMessage((TMessage)message);
+            }catch(InvalidCastException e)
+            {
+                var mes = "This cannot be recived " + message.GetType().ToString() + Environment.NewLine + ".";
+                mes += "This can recive " + typeof(TMessage).ToString() + ".";
+                throw new Exceptions.MessageHelperException(mes);
+            }
         }
     }
 }
