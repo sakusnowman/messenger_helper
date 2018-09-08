@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using MessengerHelper.Exceptions;
 using MessengerHelper.Posts;
 using NUnit.Framework;
 
@@ -36,7 +37,7 @@ namespace MessengerHelper.Tests
             var message = new NumberMessage() { Num = 3 };
 
             // Assert
-            Assert.Throws<InvalidCastException>(() => post.ReciveMessage(message));
+            Assert.Throws<MessageHelperException>(() => post.ReciveMessage(message));
         }
     }
 }

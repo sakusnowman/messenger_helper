@@ -52,7 +52,7 @@ namespace MessengerHelper.Tests
             // Arrange
             var result = "";
             Action<SimpleMessage> action = new Action<SimpleMessage>(m => result = m.From);
-            Mock <IPost<SimpleMessage>> mockPost = new Mock<IPost<SimpleMessage>>();
+            Mock<IPost<SimpleMessage>> mockPost = new Mock<IPost<SimpleMessage>>();
             postService.Setup(ps => ps.CreatePost<SimpleMessage>()).Returns(mockPost.Object);
 
             var post = messenger.Register<SimpleMessage>(action);
@@ -94,7 +94,7 @@ namespace MessengerHelper.Tests
             Assert.Throws<NotRegisterdMessageException>(() => messenger.PostMessage(new SimpleMessage()));
         }
 
-        
+
     }
 
     public class SimpleMessage
