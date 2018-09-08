@@ -8,6 +8,6 @@ namespace MessengerHelper.Messengers
     public interface IMessenger
     {
         IPost<TMessage> Register<TMessage>(Action<TMessage> action);
-        void PostMessage<TMessage>(TMessage message);
+        void PostMessage(object message);
     }
 }
