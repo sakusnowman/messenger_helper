@@ -7,5 +7,6 @@ namespace MessengerHelper.Posts
     public interface IPostsService
     {
         IPost<TMessage> CreatePost<TMessage>();
+        IPost<TMessage> CreateTaskPost<TMessage>();
     }
 }

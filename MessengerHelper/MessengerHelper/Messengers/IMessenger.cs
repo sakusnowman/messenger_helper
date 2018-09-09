@@ -13,7 +13,7 @@ namespace MessengerHelper.Messengers
         /// <typeparam name="TMessage"></typeparam>
         /// <param name="action"></param>
         /// <returns>Returns value is same as registered in messenger.</returns>
-        IPost<TMessage> Register<TMessage>(Action<TMessage> action);
+        IPost<TMessage> Register<TMessage>(Action<TMessage> action, bool onTaskRun = false);
 
         /// <summary>
         /// Post to registered post which can be recived message type.
