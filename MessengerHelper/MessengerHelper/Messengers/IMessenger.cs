@@ -7,7 +7,7 @@ namespace MessengerHelper.Messengers
 {
     public interface IMessenger
     {
-        IPost<TMessage> Register<TMessage>(Action<TMessage> action);
+        IPost<TMessage> Register<TMessage>(Action<TMessage> action, bool onTaskRun = false);
         void PostMessage(object message);
     }
 }
