@@ -10,5 +10,10 @@ namespace MessengerHelper.Posts
         {
             return new ActionPost<TMessage>();
         }
+
+        public IPost<TMessage> CreateTaskPost<TMessage>()
+        {
+            return new TaskPost<TMessage>();
+        }
     }
 }

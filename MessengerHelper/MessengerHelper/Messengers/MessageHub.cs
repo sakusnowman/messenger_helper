@@ -24,12 +24,12 @@ namespace MessengerHelper.Messengers
             registeredPosts[message.GetType()].ForEach(rp => rp.ReciveMessage(message));
         }
 
-        public IPost<TMessage> Register<TMessage>(Action<TMessage> action)
+        public IPost<TMessage> Register<TMessage>(Action<TMessage> action, bool onTaskRun = false)
         {
-            var actionPost = postService.CreatePost<TMessage>();
-            actionPost.AddAction(action);
-            AddPost(actionPost, typeof(TMessage));
-            return actionPost;
+            var post = onTaskRun ? postService.CreateTaskPost<TMessage>() : postService.CreatePost<TMessage>();
+            post.AddAction(action);
+            AddPost(post, typeof(TMessage));
+            return post;
         }
 
         private void AddPost(IPost post, Type type)
